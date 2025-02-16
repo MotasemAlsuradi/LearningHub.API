@@ -12,7 +12,7 @@ namespace LearningHub.Core.Repositry
         List<Course> GetAllCourses();
         void CreateCourse(Course course);
         void UpdateCourse(Course course);
-        void DeleteCourse(decimal id);
-        Course GetCourseById(decimal id);
+        void DeleteCourse(int id);
+        Course GetCourseById(int id);
     }
 }
