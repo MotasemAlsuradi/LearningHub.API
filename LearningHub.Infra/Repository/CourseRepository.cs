@@ -41,7 +41,7 @@ namespace LearningHub.Infra.Repository
         public void UpdateCourse(Course course)
         {
             var parameter = new DynamicParameters();
-            parameter.Add("p_ID", course.Courseid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            parameter.Add("p_ID", course.Courseid, dbType: DbType.UInt32, direction: ParameterDirection.Input);
             parameter.Add("p_course_name", course.Coursename, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add("p_catId", course.Categoryid, dbType: DbType.UInt32, direction: ParameterDirection.Input);
             parameter.Add("p_image", course.Imagename, dbType: DbType.String, direction: ParameterDirection.Input);
@@ -49,18 +49,18 @@ namespace LearningHub.Infra.Repository
             var record = _dbContext.Connection.Execute("Course_pkg.UpdateCourse", parameter, commandType: CommandType.StoredProcedure);
         }
 
-        public void DeleteCourse(decimal id)
+        public void DeleteCourse(int id)
         {
             var parameter = new DynamicParameters();
-            parameter.Add("p_ID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            parameter.Add("p_ID", id, dbType: DbType.UInt32, direction: ParameterDirection.Input);
 
             var record = _dbContext.Connection.Execute("Course_pkg.DeleteCourse", parameter, commandType: CommandType.StoredProcedure);
         }
 
-        public Course GetCourseById(decimal id)
+        public Course GetCourseById(int id)
         {
             var parameter = new DynamicParameters();
-            parameter.Add("p_ID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            parameter.Add("p_ID", id, dbType: DbType.UInt32, direction: ParameterDirection.Input);
 
             IEnumerable<Course> records = _dbContext.Connection.Query<Course>("Course_pkg.GetCourseById", parameter, commandType: CommandType.StoredProcedure);
 
